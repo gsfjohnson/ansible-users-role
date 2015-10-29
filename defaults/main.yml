@@ -1,0 +1,6 @@
+---
+
+users: []
+#  - name: username
+#    id: 1234   (required if creating)
+#    sshpubkey: "ssh-rsa AAAAB3Nza....== keyname"

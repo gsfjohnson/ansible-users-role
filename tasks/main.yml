@@ -1,0 +1,5 @@
+---
+
+- name: ssh keys
+  authorized_key: user="{{item.name}}" key="{{item.sshpubkey}}"
+  with_items: users
