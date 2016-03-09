@@ -4,3 +4,11 @@ users: []
 #  - name: username
 #    id: 1234   (required if creating)
 #    sshpubkey: "ssh-rsa AAAAB3Nza....== keyname"
+
+users_groups: []
+#  - name: groupname
+#    gid: 4321
+
+users_ssh: []
+#  - name: username
+#    pubkey: "oapkdaopsdkaodpakodp comment"
