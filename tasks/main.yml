@@ -1,5 +1,16 @@
 ---
 
-- name: ssh keys
-  authorized_key: user="{{item.name}}" key="{{item.sshpubkey}}"
+- name: groups
+  group: name="{{item.name}}" gid="{{item.gid}}" state="{{item.state|default('present')}}"
+  with_items: users_groups
+  when: item.name is defined and item.gid is defined
+
+- name: users
+  user: name="{{item.name}}" comment="{{item.comment}}" uid="{{item.uid}}" group="{{item.group}}" groups="{{item.groups|default('')}}" remove="{{item.remove|default('no')}}" state="{{item.state|default('present')}}"
   with_items: users
+  when: item.name is defined and item.comment is defined and item.uid is defined and item.group is defined
+
+- name: user ssh keys
+  authorized_key: user="{{item.name}}" key="{{item.pubkey}}"
+  with_items: users_ssh
+  when: item.name is defined and item.pubkey is defined
