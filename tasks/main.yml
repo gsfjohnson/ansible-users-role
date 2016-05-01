@@ -2,21 +2,21 @@
 
 - name: groups
   group: name="{{item.name}}" gid="{{item.gid}}" state="{{item.state|default('present')}}"
-  with_items: users_groups
+  with_items: "{{users_groups}}"
   when: item.name is defined and item.gid is defined
   tags:
   - users_groups
 
 - name: users
   user: name="{{item.name}}" comment="{{item.comment}}" uid="{{item.uid}}" group="{{item.group}}" groups="{{item.groups|default('')}}" remove="{{item.remove|default('no')}}" state="{{item.state|default('present')}}"
-  with_items: users
+  with_items: "{{users}}"
   when: item.name is defined and item.comment is defined and item.uid is defined and item.group is defined
   tags:
   - users_users
 
 - name: user ssh keys
   authorized_key: user="{{item.name}}" key="{{item.pubkey}}" state="{{item.state|default('present')}}"
-  with_items: users_ssh
+  with_items: "{{users_ssh}}"
   when: item.name is defined and item.pubkey is defined
   tags:
   - users_ssh_keys
